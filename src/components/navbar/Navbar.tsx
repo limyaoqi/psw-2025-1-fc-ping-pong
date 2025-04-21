@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addUser, User } from "@/lib/db/user";
 import NavTabs from "./NavTabs";
 import ThemeToggle from "./ThemeToggle";
@@ -32,6 +32,12 @@ export default function Navbar({
 }: NavbarProps) {
   const [newUserName, setNewUserName] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(!currentUser && !isLoadingUser);
+
+  useEffect(() => {
+    if (!isLoadingUser && !currentUser) {
+      setIsDialogOpen(true);
+    }
+  }, [isLoadingUser, currentUser]);
 
   const handleCreateUser = async () => {
     const trimmed = newUserName.trim();
