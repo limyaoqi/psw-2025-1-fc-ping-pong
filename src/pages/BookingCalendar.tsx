@@ -69,7 +69,7 @@ export default function BookingCalendar({ currentUser }: BookingCalendarProps) {
         const dateString = format(date, "yyyy-MM-dd");
         const dateBookings = await getBookingsByDate(dateString);
         setBookings(dateBookings);
-        
+
         // Get user's bookings if user is logged in
         if (currentUser) {
           const usrBookings = await getUserBookings(currentUser.username);
@@ -101,7 +101,7 @@ export default function BookingCalendar({ currentUser }: BookingCalendarProps) {
   };
 
   // Rest of your component remains the same...
-  
+
   const isTimeSlotBooked = (hour: number, minute: string) => {
     const slotTime = new Date(date);
     slotTime.setHours(hour, Number.parseInt(minute), 0, 0);
@@ -185,7 +185,9 @@ export default function BookingCalendar({ currentUser }: BookingCalendarProps) {
 
     const bookingsThisWeek = userBookings.filter((booking) => {
       const bookingDate = new Date(booking.date);
-      return bookingDate >= startOfCurrentWeek && bookingDate < endOfCurrentWeek;
+      return (
+        bookingDate >= startOfCurrentWeek && bookingDate < endOfCurrentWeek
+      );
     });
 
     if (bookingsThisWeek.length >= 3) {
@@ -199,10 +201,14 @@ export default function BookingCalendar({ currentUser }: BookingCalendarProps) {
         id: uuidv4(),
         username: currentUser.username,
         date: format(date, "yyyy-MM-dd"),
-        startTime: startTime.getHours().toString().padStart(2, '0') + ":" + 
-                   startTime.getMinutes().toString().padStart(2, '0'),
-        endTime: endTime.getHours().toString().padStart(2, '0') + ":" + 
-                 endTime.getMinutes().toString().padStart(2, '0'),
+        startTime:
+          startTime.getHours().toString().padStart(2, "0") +
+          ":" +
+          startTime.getMinutes().toString().padStart(2, "0"),
+        endTime:
+          endTime.getHours().toString().padStart(2, "0") +
+          ":" +
+          endTime.getMinutes().toString().padStart(2, "0"),
         duration: newDurationMinutes,
         createdAt: new Date(),
       };
@@ -237,10 +243,10 @@ export default function BookingCalendar({ currentUser }: BookingCalendarProps) {
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">
+          <h1 className="text-2xl font-bold tracking-tight text-start">
             Table Reservations
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-start pl-2">
             Book the ping pong table for your play time.
           </p>
         </div>
@@ -260,7 +266,7 @@ export default function BookingCalendar({ currentUser }: BookingCalendarProps) {
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
               <Calendar
-              className="bg-[var(--background)]"
+                className="bg-[var(--background)]"
                 mode="single"
                 selected={date}
                 onSelect={(newDate) => newDate && setDate(newDate)}
@@ -288,7 +294,7 @@ export default function BookingCalendar({ currentUser }: BookingCalendarProps) {
       {!currentUser && (
         <Alert>
           <Info className="h-4 w-4" />
-          <AlertTitle>Login Required</AlertTitle>  
+          <AlertTitle>Login Required</AlertTitle>
           <AlertDescription>
             Please create a user profile to book the table.
           </AlertDescription>
@@ -406,10 +412,10 @@ export default function BookingCalendar({ currentUser }: BookingCalendarProps) {
                 value={duration}
                 onValueChange={(value) => setDuration(value as "30" | "60")}
               >
-                <SelectTrigger id="duration">
+                <SelectTrigger id="duration" className="w-full">
                   <SelectValue placeholder="Select duration" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-black text-white">
                   <SelectItem value="30">30 minutes</SelectItem>
                   <SelectItem value="60">1 hour</SelectItem>
                 </SelectContent>
@@ -481,7 +487,7 @@ export default function BookingCalendar({ currentUser }: BookingCalendarProps) {
                         );
                       }}
                     >
-                      Cancel
+                      Remove
                     </Button>
                   </div>
                 ))}

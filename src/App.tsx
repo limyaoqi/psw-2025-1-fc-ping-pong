@@ -56,17 +56,19 @@ function App() {
       <div className="min-h-screen bg-background text-foreground">
         {isDbInitialized ? (
           <>
-            <Navbar 
-              activeTab={activeTab} 
-              setActiveTab={setActiveTab} 
+            <Navbar
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
               isLoadingUser={isLoadingUser}
             />
             <main className="container mx-auto py-6 px-4">
-              {activeTab === "bookings" && <BookingCalendar currentUser={currentUser} />}
+              {activeTab === "bookings" && (
+                <BookingCalendar currentUser={currentUser} />
+              )}
               {activeTab === "leaderboard" && <Leaderboard />}
-              {activeTab === "tournaments" && <Tournaments currentUser={currentUser} />}
+              {activeTab === "tournaments" && <Tournaments />}
             </main>
           </>
         ) : (

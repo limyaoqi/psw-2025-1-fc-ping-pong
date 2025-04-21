@@ -23,15 +23,17 @@ interface NavbarProps {
   isLoadingUser: boolean;
 }
 
-export default function Navbar({ 
-  activeTab, 
-  setActiveTab, 
-  currentUser, 
+export default function Navbar({
+  activeTab,
+  setActiveTab,
+  currentUser,
   setCurrentUser,
-  isLoadingUser 
+  isLoadingUser,
 }: NavbarProps) {
   const [newUserName, setNewUserName] = useState("");
-  const [isDialogOpen, setIsDialogOpen] = useState(!currentUser && !isLoadingUser);
+  const [isDialogOpen, setIsDialogOpen] = useState(
+    !currentUser && !isLoadingUser
+  );
 
   useEffect(() => {
     if (!isLoadingUser && !currentUser) {
@@ -70,7 +72,7 @@ export default function Navbar({
         </span>
 
         {/* NavTabs only on lg and up */}
-        <nav className="hidden lg:flex items-center space-x-4">
+        <nav className="hidden lg:flex items-center justify-center space-x-4">
           <NavTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         </nav>
 

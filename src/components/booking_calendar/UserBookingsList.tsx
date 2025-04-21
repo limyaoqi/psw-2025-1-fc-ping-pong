@@ -14,7 +14,9 @@ interface UserBookingsListProps {
   userBookings: Booking[];
 }
 
-export default function UserBookingsList({ userBookings }: UserBookingsListProps) {
+export default function UserBookingsList({
+  userBookings,
+}: UserBookingsListProps) {
   return (
     <Card>
       <CardHeader>

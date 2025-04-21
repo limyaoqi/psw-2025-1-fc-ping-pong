@@ -1,10 +1,10 @@
-import { Button } from "../ui/button"
-import { Calendar, Trophy, Users } from "lucide-react"
-import { cn } from "../../lib/utils"
+import { Button } from "../ui/button";
+import { Calendar, Trophy, Users } from "lucide-react";
+import { cn } from "../../lib/utils";
 
 interface NavTabsProps {
-  activeTab: string
-  setActiveTab: (tab: string) => void
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
 }
 
 export default function NavTabs({ activeTab, setActiveTab }: NavTabsProps) {
@@ -13,7 +13,7 @@ export default function NavTabs({ activeTab, setActiveTab }: NavTabsProps) {
       <Button
         variant="ghost"
         className={cn(
-          "text-sm font-medium transition-colors hover:text-primary",
+          "text-sm font-medium transition-colors hover:text-primary w-[180px]",
           activeTab === "bookings" ? "text-primary" : "text-muted-foreground"
         )}
         onClick={() => setActiveTab("bookings")}
@@ -24,7 +24,7 @@ export default function NavTabs({ activeTab, setActiveTab }: NavTabsProps) {
       <Button
         variant="ghost"
         className={cn(
-          "text-sm font-medium transition-colors hover:text-primary",
+          "text-sm font-medium transition-colors hover:text-primary w-[180px]",
           activeTab === "tournaments" ? "text-primary" : "text-muted-foreground"
         )}
         onClick={() => setActiveTab("tournaments")}
@@ -35,7 +35,7 @@ export default function NavTabs({ activeTab, setActiveTab }: NavTabsProps) {
       <Button
         variant="ghost"
         className={cn(
-          "text-sm font-medium transition-colors hover:text-primary",
+          "text-sm font-medium transition-colors hover:text-primary w-[180px]",
           activeTab === "leaderboard" ? "text-primary" : "text-muted-foreground"
         )}
         onClick={() => setActiveTab("leaderboard")}
@@ -44,5 +44,5 @@ export default function NavTabs({ activeTab, setActiveTab }: NavTabsProps) {
         Leaderboard
       </Button>
     </>
-  )
+  );
 }

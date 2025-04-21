@@ -52,10 +52,7 @@ export default function BookingForm({
 
         <div className="space-y-2">
           <Label htmlFor="time">Time Slot</Label>
-          <div
-            id="time"
-            className="p-2 border rounded-md flex items-center"
-          >
+          <div id="time" className="p-2 border rounded-md flex items-center">
             <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
             {selectedTimeSlot
               ? format(
