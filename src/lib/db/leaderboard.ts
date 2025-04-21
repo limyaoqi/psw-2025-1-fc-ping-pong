@@ -1,5 +1,4 @@
 import { DB_NAME } from "./dbConfig";
-import { User } from "./user";
 import { Booking } from "./booking";
 import { Tournament } from "./tournament";
 
