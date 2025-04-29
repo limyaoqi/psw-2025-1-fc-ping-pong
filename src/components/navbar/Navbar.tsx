@@ -68,7 +68,7 @@ export default function Navbar({
       <div className="container flex h-16 items-center justify-between py-4">
         {/* Logo */}
         <span className="text-xl font-bold whitespace-nowrap">
-          FC Ping Pong
+          FC Ping P🏓ng
         </span>
 
         {/* NavTabs only on lg and up */}

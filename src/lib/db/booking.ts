@@ -9,6 +9,7 @@ export interface Booking {
   duration: number;
   createdAt: Date;
 }
+
 export async function addBooking(booking: Booking): Promise<string> {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME);
@@ -24,6 +25,7 @@ export async function addBooking(booking: Booking): Promise<string> {
 
       addBookingRequest.onsuccess = () => {
         // Update user's bookings
+        // From addBooking function
         const getUserRequest = usersStore.get(booking.username);
 
         getUserRequest.onsuccess = () => {
@@ -31,6 +33,13 @@ export async function addBooking(booking: Booking): Promise<string> {
           if (user) {
             user.bookings.push(booking.id);
             user.totalBookings += 1;
+
+            const startTime = new Date(booking.startTime);
+            const endTime = new Date(booking.endTime);
+            const playMinutes =
+              (endTime.getTime() - startTime.getTime()) / (1000 * 60);
+
+            user.totalPlayMinutes = (user.totalPlayMinutes || 0) + playMinutes;
 
             const updateUserRequest = usersStore.put(user);
             updateUserRequest.onsuccess = () => resolve(booking.id);
