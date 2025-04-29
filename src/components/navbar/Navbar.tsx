@@ -50,6 +50,7 @@ export default function Navbar({
       bookings: [],
       totalBookings: 0,
       tournaments: [],
+      totalPlayMinutes: 0,
       createdAt: new Date(),
     };
 
